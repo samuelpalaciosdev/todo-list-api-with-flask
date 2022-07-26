@@ -15,13 +15,14 @@ def hello_world():
 @app.route('/todos', methods=['POST'])
 def add_new_todo():
     todo = json.loads(request.data)
-    todos.append(todo)
+    # json.loads() parse a valid JSON string and convert it into a Python Dictionary.
+    todos.append(todo) # Appending the new todo to the todos list
     print("Incoming request with the following body", todo)
     return jsonify(todos)
 
 @app.route('/todos/<int:position>', methods=['DELETE'])
 def delete_todo(position):
-    todos.pop(position)
+    todos.pop(position) # delete the todo at the position passed to the url
     print("This is the position to delete: ",position)
     return jsonify(todos)
 
